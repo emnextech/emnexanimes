@@ -15,25 +15,44 @@ function Servers({
   setActiveServerId,
   serverLoading,
 }) {
-  const subServers = servers?.filter((server) => server.type === "sub") || [];
-  const dubServers = servers?.filter((server) => server.type === "dub") || [];
-  const rawServers = servers?.filter((server) => server.type === "raw") || [];
+  // Filter to only show HD-2 servers (others are blocked by streaming providers)
+  // To re-enable all servers, remove the .filter() call below
+  const filteredServers = servers?.filter((server) => server.serverName === "HD-2") || [];
+  
+  const subServers = filteredServers?.filter((server) => server.type === "sub") || [];
+  const dubServers = filteredServers?.filter((server) => server.type === "dub") || [];
+  const rawServers = filteredServers?.filter((server) => server.type === "raw") || [];
+  
+  // Original code with all servers (commented out):
+  // const subServers = servers?.filter((server) => server.type === "sub") || [];
+  // const dubServers = servers?.filter((server) => server.type === "dub") || [];
+  // const rawServers = servers?.filter((server) => server.type === "raw") || [];
 
   useEffect(() => {
+    // Default to HD-2 since other servers are blocked
+    const preferredServerName = "HD-2";
     const savedServerName = localStorage.getItem("server_name");
 
-    if (savedServerName) {
-      const matchingServer = servers?.find(
+    // First try to find HD-2 server
+    const hd2Server = filteredServers?.find(
+      (server) => server.serverName === preferredServerName
+    );
+    
+    if (hd2Server) {
+      setActiveServerId(hd2Server.data_id);
+      localStorage.setItem("server_name", preferredServerName);
+    } else if (savedServerName) {
+      const matchingServer = filteredServers?.find(
         (server) => server.serverName === savedServerName
       );
 
       if (matchingServer) {
         setActiveServerId(matchingServer.data_id);
-      } else if (servers && servers.length > 0) {
-        setActiveServerId(servers[0].data_id);
+      } else if (filteredServers && filteredServers.length > 0) {
+        setActiveServerId(filteredServers[0].data_id);
       }
-    } else if (servers && servers.length > 0) {
-      setActiveServerId(servers[0].data_id);
+    } else if (filteredServers && filteredServers.length > 0) {
+      setActiveServerId(filteredServers[0].data_id);
     }
   }, [servers]);
 
