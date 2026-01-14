@@ -26,17 +26,18 @@ const corsHeaders: Record<string, string> = {
 const getRequiredHeaders = (range?: string | null): Record<string, string> => {
     const headers: Record<string, string> = {
         "Accept": "*/*",
-        "Accept-Language": "en-US,en;q=0.5",
-        "Origin": "https://megacloud.blog",
-        "Referer": "https://megacloud.blog/",
-        "Sec-Ch-Ua": '"Chromium";v="134", "Not:A-Brand";v="24", "Brave";v="134"',
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Connection": "keep-alive",
+        "Origin": "https://rapid-cloud.co",
+        "Referer": "https://rapid-cloud.co/",
+        "Sec-Ch-Ua": '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
         "Sec-Ch-Ua-Mobile": "?0",
         "Sec-Ch-Ua-Platform": '"Windows"',
         "Sec-Fetch-Dest": "empty",
         "Sec-Fetch-Mode": "cors",
         "Sec-Fetch-Site": "cross-site",
-        "Sec-Gpc": "1",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
     };
     
     // Forward Range header for video seeking
@@ -187,29 +188,63 @@ async function handleProxy(request: Request): Promise<Response> {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 60000);
 
+        // Log the request for debugging
+        console.log(`[Proxy] Fetching: ${url.slice(0, 100)}...`);
+        console.log(`[Proxy] With Referer: ${headers["Referer"]}`);
+        console.log(`[Proxy] With Origin: ${headers["Origin"]}`);
+
         const fetchOptions: RequestInit = {
             headers,
             redirect: "follow",
             signal: controller.signal,
-            method: request.method === 'HEAD' ? 'HEAD' : 'GET'
+            method: request.method === 'HEAD' ? 'HEAD' : 'GET',
+            // @ts-ignore - Cloudflare-specific options
+            cf: {
+                // Disable caching to get fresh responses
+                cacheTtl: 0,
+                cacheEverything: false,
+                // Use different datacenter routing
+                scrapeShield: false,
+            }
         };
 
         const fetchedResponse = await fetch(url, fetchOptions)
             .finally(() => clearTimeout(timeoutId));
 
-        // Handle 403 Forbidden
+        // Log response status
+        console.log(`[Proxy] Response status: ${fetchedResponse.status}`);
+
+        // Handle 403 Forbidden - Try alternative approach
         if (fetchedResponse.status === 403) {
-            console.error("403 Forbidden - Server denied access");
-            return new Response(
-                JSON.stringify({
-                    message: "Access denied by target server",
-                    error: "The streaming server returned a 403 Forbidden error",
-                }),
-                {
-                    status: 403,
-                    headers: { "Content-Type": "application/json", ...corsHeaders },
-                }
-            );
+            console.error("403 Forbidden - Server denied access, trying without cf options");
+            
+            // Retry without cf options
+            const retryOptions: RequestInit = {
+                headers,
+                redirect: "follow",
+                signal: controller.signal,
+                method: request.method === 'HEAD' ? 'HEAD' : 'GET'
+            };
+            
+            const retryResponse = await fetch(url, retryOptions);
+            
+            if (retryResponse.status === 403) {
+                console.error("403 Forbidden - Retry also failed");
+                return new Response(
+                    JSON.stringify({
+                        message: "Access denied by target server",
+                        error: "The streaming server returned a 403 Forbidden error. This may be due to IP blocking or expired stream URLs.",
+                        debug: {
+                            referer: headers["Referer"],
+                            origin: headers["Origin"],
+                        }
+                    }),
+                    {
+                        status: 403,
+                        headers: { "Content-Type": "application/json", ...corsHeaders },
+                    }
+                );
+            }
         }
 
         // Handle other error responses
