@@ -494,10 +494,12 @@ export default function Player({
 
       const subs = (subtitles || []).map((s) => ({ ...s }));
 
+      // Use m3u8proxy for subtitles (same proxy as video streams)
+      const subtitleProxy = m3u8proxy[0] || '';
       for (const sub of subs) {
         const encodedUrl = encodeURIComponent(sub.file);
         const encodedHeaders = encodeURIComponent(JSON.stringify(headers));
-        sub.file = `${proxy}${encodedUrl}&headers=${encodedHeaders}`;
+        sub.file = `${subtitleProxy}${encodedUrl}&headers=${encodedHeaders}`;
       }
 
       const defaultSubtitle = subs?.find((sub) => sub.label.toLowerCase() === "english");
@@ -547,9 +549,10 @@ export default function Player({
       });
 
       if (thumbnail) {
+        const thumbnailProxy = m3u8proxy[0] || '';
         art.plugins.add(
           artplayerPluginVttThumbnail({
-            vtt: `${proxy}${thumbnail}`,
+            vtt: `${thumbnailProxy}${encodeURIComponent(thumbnail)}`,
           })
         );
       }
