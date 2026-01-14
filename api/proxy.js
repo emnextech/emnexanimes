@@ -1,15 +1,15 @@
 // Vercel Serverless Function - M3U8 Proxy
 // This bypasses Cloudflare Worker IP blocking by using Vercel's infrastructure
 
-export const config = {
-  runtime: 'edge',
-};
-
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Range',
   'Access-Control-Expose-Headers': 'Content-Length, Content-Range, Accept-Ranges',
+};
+
+export const config = {
+  runtime: 'edge',
 };
 
 export default async function handler(request) {
