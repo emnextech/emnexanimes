@@ -414,14 +414,20 @@ async function handleProxy(request: Request): Promise<Response> {
 export default {
     async fetch(request: Request, env: Env): Promise<Response> {
         const url = new URL(request.url);
+        const startTime = Date.now();
+        
+        // Log incoming request
+        console.log(`[${new Date().toISOString()}] ${request.method} ${url.pathname}${url.search ? '?' + url.searchParams.toString().slice(0, 100) : ''}`);
 
         // Handle CORS preflight
         if (request.method === 'OPTIONS') {
+            console.log(`[${new Date().toISOString()}] CORS preflight handled`);
             return handleOptions();
         }
 
         // Health check endpoint
         if (url.pathname === '/health') {
+            console.log(`[${new Date().toISOString()}] Health check`);
             return handleHealth();
         }
 
@@ -434,7 +440,14 @@ export default {
         if (request.method === 'GET' || request.method === 'HEAD') {
             // Support both /fetch?url= and /?url=
             if (url.pathname === '/fetch' || url.pathname === '/') {
-                return handleProxy(request);
+                const targetUrl = url.searchParams.get('url');
+                console.log(`[${new Date().toISOString()}] Proxying: ${targetUrl?.slice(0, 150)}...`);
+                
+                const response = await handleProxy(request);
+                const duration = Date.now() - startTime;
+                console.log(`[${new Date().toISOString()}] Completed ${response.status} in ${duration}ms`);
+                
+                return response;
             }
             
             // Handle bare paths that look like streaming resources

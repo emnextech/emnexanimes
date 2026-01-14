@@ -3,9 +3,19 @@ main = "src/index.ts"
 compatibility_date = "2024-12-01"
 compatibility_flags = ["nodejs_compat"]
 
+# Enable real-time logs (Workers Logpush / Tail Workers)
+[observability]
+enabled = true
+
+# Logging configuration
+[observability.logs]
+enabled = true
+invocation_logs = true
+head_sampling_rate = 1 # Log 100% of requests
+
 [vars]
 # Add any environment variables here
-# ALLOWED_ORIGINS = "https://your-production-domain.com"
+ALLOWED_ORIGINS = "https://animesemnex.vercel.app,https://emnexanimes.vercel.app,http://localhost:5173"
 
 # Uncomment if you want to use KV for caching
 # [[kv_namespaces]]

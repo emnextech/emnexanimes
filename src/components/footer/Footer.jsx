@@ -8,9 +8,16 @@ function Footer() {
       <div
         className="w-full text-left py-6 max-[500px]:hidden"
       >
-        <Link to="/" className="text-3xl font-bold tracking-tight">
-          <span className="text-white">emnex</span>
-          <span className="text-[#39d353]">animes</span>
+        <Link to="/" className="flex items-center gap-x-3">
+          <img 
+            src="/logo.png" 
+            alt="emnexanimes" 
+            className="w-12 h-12"
+          />
+          <span className="text-3xl font-bold tracking-tight">
+            <span className="text-white">emnex</span>
+            <span className="text-[#39d353]">animes</span>
+          </span>
         </Link>
       </div>
       <div className="flex py-5 flex-col w-full space-y-4 max-md:items-center max-[500px]:bg-[#111111]">

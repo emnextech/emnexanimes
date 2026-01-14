@@ -117,10 +117,17 @@ function SplashScreen() {
           <div className="h-auto flex flex-col w-[700px] relative z-40 px-20 py-20 left-0 max-[1200px]:py-12 max-[780px]:px-12 max-[520px]:py-4 max-[520px]:px-8">
             <Link
               to="/home"
-              className="text-[45px] font-extrabold tracking-wide max-[520px]:text-[38px] max-[520px]:text-center"
+              className="flex items-center gap-x-4 max-[520px]:justify-center"
             >
-              {logoTitle.slice(0, 5)}
-              <span className="text-[#39d353]">{logoTitle.slice(5)}</span>
+              <img 
+                src="/logo.png" 
+                alt="emnexanimes" 
+                className="w-16 h-16 max-[520px]:w-12 max-[520px]:h-12"
+              />
+              <span className="text-[45px] font-extrabold tracking-wide max-[520px]:text-[32px]">
+                <span className="text-white">emnex</span>
+                <span className="text-[#39d353]">animes</span>
+              </span>
             </Link>
             <div className="w-full flex gap-x-3 mt-6">
               <input

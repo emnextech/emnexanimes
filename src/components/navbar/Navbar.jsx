@@ -62,7 +62,7 @@ function Navbar() {
         } max-[600px]:h-fit max-[600px]:flex-col max-[1200px]:bg-opacity-100 max-[600px]:py-2`}
       >
         <div className="flex gap-x-6 items-center w-fit max-lg:w-full max-lg:justify-between">
-          <div className="flex gap-x-6 items-center w-fit">
+          <div className="flex gap-x-4 items-center w-fit">
             <FontAwesomeIcon
               icon={faBars}
               className="text-2xl text-white mt-1 cursor-pointer hover:text-[#39d353] transition-colors"
@@ -70,10 +70,17 @@ function Navbar() {
             />
             <Link
               to="/"
-              className="text-4xl font-bold max-[575px]:text-3xl cursor-pointer tracking-tight"
+              className="flex items-center gap-x-2 cursor-pointer"
             >
-              <span className="text-white">emnex</span>
-              <span className="text-[#39d353]">animes</span>
+              <img 
+                src="/logo.png" 
+                alt="emnexanimes" 
+                className="w-10 h-10 max-[575px]:w-8 max-[575px]:h-8"
+              />
+              <span className="text-3xl font-bold tracking-tight max-[575px]:text-2xl">
+                <span className="text-white">emnex</span>
+                <span className="text-[#39d353]">animes</span>
+              </span>
             </Link>
           </div>
           <WebSearch />
