@@ -2,6 +2,38 @@
   padding-inline: 0px !important;
   gap: 2px !important;
 }
+
+/* Fix cursor visibility */
+.art-video-player {
+  cursor: default !important;
+}
+
+.art-video-player:hover {
+  cursor: default !important;
+}
+
+.art-video-player .art-video {
+  cursor: pointer !important;
+}
+
+.art-video-player .art-controls,
+.art-video-player .art-control,
+.art-video-player .art-setting,
+.art-video-player .art-settings,
+.art-video-player button,
+.art-video-player [role="button"] {
+  cursor: pointer !important;
+}
+
+.art-hide-cursor .art-video {
+  cursor: none !important;
+}
+
+.art-hide-cursor .art-controls,
+.art-hide-cursor .art-bottom {
+  cursor: default !important;
+}
+
 .art-volume-panel {
   padding-bottom: 20px !important;
 }
