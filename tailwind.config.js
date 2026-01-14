@@ -15,6 +15,20 @@ export default {
         "ultra-wide":"1660px",
       },
       colors: {
+        // emnexanimes Theme Colors
+        'theme': {
+          'bg': '#0a0a0a',
+          'bg-secondary': '#111111',
+          'bg-tertiary': '#161616',
+          'bg-card': '#1a1a1a',
+          'bg-hover': '#222222',
+          'text': '#ffffff',
+          'text-secondary': '#9ca3af',
+          'text-muted': '#6b7280',
+          'accent': '#39d353',
+          'accent-hover': '#2fb344',
+          'border': 'rgba(255, 255, 255, 0.08)',
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -38,7 +52,7 @@ export default {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
+          DEFAULT: "#39d353",
           foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {

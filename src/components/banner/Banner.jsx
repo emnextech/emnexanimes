@@ -22,7 +22,7 @@ function Banner({ item, index }) {
       />
       <div className="spotlight-overlay"></div>
       <div className="absolute flex flex-col left-0 bottom-[50px] w-[55%] p-4 z-10 max-[1390px]:w-[45%] max-[1390px]:bottom-[10px] max-[1300px]:w-[600px] max-[1120px]:w-[60%] max-md:w-[90%] max-[300px]:w-full">
-        <p className="text-[#ffbade] font-semibold text-[20px] w-fit max-[1300px]:text-[15px]">
+        <p className="text-[#39d353] font-semibold text-[20px] w-fit max-[1300px]:text-[15px]">
           #{index + 1} Spotlight
         </p>
         <h3 className="text-white line-clamp-2 text-5xl font-bold mt-6 text-left max-[1390px]:text-[45px] max-[1300px]:text-3xl max-[1300px]:mt-4 max-md:text-2xl max-md:mt-1 max-[575px]:text-[22px] max-sm:leading-6 max-sm:w-[80%] max-[320px]:w-full ">
@@ -69,7 +69,7 @@ function Banner({ item, index }) {
 
               <div className="flex space-x-3 w-fit">
                 {item.tvInfo.quality && (
-                  <div className="bg-[#ffbade] py-[1px] px-[6px] rounded-md w-fit text-[11px] font-bold h-fit">
+                  <div className="bg-[#39d353] py-[1px] px-[6px] rounded-md w-fit text-[11px] font-bold h-fit text-black">
                     {item.tvInfo.quality}
                   </div>
                 )}
@@ -106,21 +106,21 @@ function Banner({ item, index }) {
           {item.description}
         </p>
         <div className="flex gap-x-5 mt-10 max-md:mt-6 max-sm:w-full max-[320px]:flex-col max-[320px]:space-y-3">
-          <button className="flex justify-center items-center bg-[#ffbade] px-4 py-2 rounded-3xl gap-x-2 max-[320px]:w-fit ">
+          <button className="flex justify-center items-center bg-[#39d353] px-4 py-2 rounded-lg gap-x-2 max-[320px]:w-fit hover:bg-[#2fb344] transition-colors">
             <FontAwesomeIcon
               icon={faPlay}
-              className="text-[8px] bg-[#000000] px-[6px] py-[6px] rounded-full text-[#ffbade] max-[320px]:text-[6px]"
+              className="text-[8px] bg-[#000000] px-[6px] py-[6px] rounded-full text-[#39d353] max-[320px]:text-[6px]"
             />
             <Link
               to={`/watch/${item.id}`}
-              className="max-[1000px]:text-[15px] font-semibold max-[320px]:text-[12px]"
+              className="max-[1000px]:text-[15px] font-semibold max-[320px]:text-[12px] text-black"
             >
               Watch Now
             </Link>
           </button>
           <Link
             to={`/${item.id}`}
-            className="flex bg-[#3B3A52] justify-center items-center px-4 py-2 rounded-3xl gap-x-2 max-[320px]:w-fit max-[320px]:px-3"
+            className="flex bg-[#1a1a1a] border border-white/10 justify-center items-center px-4 py-2 rounded-lg gap-x-2 max-[320px]:w-fit max-[320px]:px-3 hover:bg-[#222222] transition-colors"
           >
             <p className="text-white max-[1000px]:text-[15px] font-semibold max-[320px]:text-[12px]">
               Detail

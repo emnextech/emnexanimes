@@ -1,10 +1,10 @@
 <p align="center">
   <div align="center">
-    <a href="https://zenime.site/">
-      <img alt="AnimeHi" src="https://raw.githubusercontent.com/itzzzme/zenime/refs/heads/main/public/logo.png" width="220"/>
+    <a href="#">
+      <h1>emnexanimes</h1>
     </a>
   </div>
-    <h3 align="center">Zenime - anime streaming platform</h3>
+    <h3 align="center">emnexanimes - anime streaming platform</h3>
     <p align="center">
   <a href="https://github.com/itzzzme/zenime">
       <img src="https://img.shields.io/github/stars/itzzzme/zenime" alt="Github Stars">
@@ -16,7 +16,7 @@
 </p>
 </p>
 <p align="center">
-    <a href="https://zenime.site">Zenime</a> is an open-source anime streaming service that uses <a href="https://github.com/itzzzme/anime-api">custom</a> API, built using ReactJS with javascript and Tailwind CSS. It lets you easily find any anime with intuitive search & suggestion feature and stream seamlessly.
+    <a href="#">emnexanimes</a> is an open-source anime streaming service built using ReactJS with javascript and Tailwind CSS. It lets you easily find any anime with intuitive search & suggestion feature and stream seamlessly.
  </p>
 
 <details>

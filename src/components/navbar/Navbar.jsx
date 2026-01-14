@@ -56,25 +56,24 @@ function Navbar() {
     <SearchProvider>
       <nav
         className={`fixed top-0 left-0 w-full h-16 z-[1000000] flex p-4 py-8 items-center justify-between transition-all duration-300 ease-in-out ${
-          isNotHomePage ? "bg-[#201F31]" : "bg-opacity-0"
+          isNotHomePage ? "bg-[#0a0a0a]" : "bg-opacity-0"
         } ${
-          isScrolled ? "bg-[#2D2B44] bg-opacity-90 backdrop-blur-md" : ""
+          isScrolled ? "bg-[#0a0a0a]/95 backdrop-blur-md border-b border-white/5" : ""
         } max-[600px]:h-fit max-[600px]:flex-col max-[1200px]:bg-opacity-100 max-[600px]:py-2`}
       >
         <div className="flex gap-x-6 items-center w-fit max-lg:w-full max-lg:justify-between">
           <div className="flex gap-x-6 items-center w-fit">
             <FontAwesomeIcon
               icon={faBars}
-              className="text-2xl text-white mt-1 cursor-pointer"
+              className="text-2xl text-white mt-1 cursor-pointer hover:text-[#39d353] transition-colors"
               onClick={handleHamburgerClick}
             />
             <Link
               to="/"
-              className="text-4xl font-bold max-[575px]:text-3xl cursor-pointer"
+              className="text-4xl font-bold max-[575px]:text-3xl cursor-pointer tracking-tight"
             >
-              {logoTitle.slice(0, 3)}
-              <span className="text-[#FFBADE]">{logoTitle.slice(3, 4)}</span>
-              {logoTitle.slice(4)}
+              <span className="text-white">emnex</span>
+              <span className="text-[#39d353]">animes</span>
             </Link>
           </div>
           <WebSearch />
@@ -95,13 +94,13 @@ function Navbar() {
                   : item.path
               }
               onClick={item.path === "/random" ? handleRandomClick : undefined}
-              className="flex flex-col gap-y-1 items-center cursor-pointer"
+              className="flex flex-col gap-y-1 items-center cursor-pointer group"
             >
               <FontAwesomeIcon
                 icon={item.icon}
-                className="text-[#ffbade] text-xl font-bold"
+                className="text-[#39d353] text-xl font-bold group-hover:scale-110 transition-transform"
               />
-              <p className="text-[15px]">{item.label}</p>
+              <p className="text-[15px] text-gray-300 group-hover:text-white transition-colors">{item.label}</p>
             </Link>
           ))}
           <div className="flex flex-col gap-y-1 items-center w-auto">
@@ -110,12 +109,12 @@ function Navbar() {
                 <button
                   key={lang}
                   onClick={() => toggleLanguage(lang)}
-                  className={`px-1 py-[1px] text-xs font-bold ${
+                  className={`px-1 py-[1px] text-xs font-bold transition-colors ${
                     index === 0 ? "rounded-l-[3px]" : "rounded-r-[3px]"
                   } ${
                     language === lang
-                      ? "bg-[#ffbade] text-black"
-                      : "bg-gray-600 text-white"
+                      ? "bg-[#39d353] text-black"
+                      : "bg-[#1a1a1a] text-white border border-white/10"
                   }`}
                 >
                   {lang}
@@ -123,18 +122,17 @@ function Navbar() {
               ))}
             </div>
             <div className="w-full">
-              <p className="whitespace-nowrap text-[15px]">Anime name</p>
+              <p className="whitespace-nowrap text-[15px] text-gray-400">Anime name</p>
             </div>
           </div>
           <Link
             to="https://t.me/zenime_discussion"
-            className="flex flex-col gap-y-1 items-center cursor-pointer"
+            className="flex flex-col gap-y-1 items-center cursor-pointer group"
           >
             <FaTelegramPlane
-              // icon={faTelegram}
-              className="text-xl font-bold text-[#ffbade]"
+              className="text-xl font-bold text-[#39d353] group-hover:scale-110 transition-transform"
             />
-            <p className="text-[15px] mb-[1px] text-white">Join Telegram</p>
+            <p className="text-[15px] mb-[1px] text-gray-300 group-hover:text-white transition-colors">Join Telegram</p>
           </Link>
         </div>
         <MobileSearch />

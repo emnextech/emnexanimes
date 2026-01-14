@@ -256,6 +256,15 @@ export default function Player({
       referer: iframeUrl ? new URL(iframeUrl).origin + "/" : window.location.origin + "/",
     };
 
+    // Debug: Log the proxy URL being constructed
+    const proxyUrl = m3u8proxy[Math.floor(Math.random() * m3u8proxy?.length)] +
+      encodeURIComponent(streamUrl) +
+      "&headers=" +
+      encodeURIComponent(JSON.stringify(headers));
+    console.log("[Player Debug] Stream URL:", streamUrl);
+    console.log("[Player Debug] Proxy URL:", proxyUrl);
+    console.log("[Player Debug] Headers:", headers);
+
     const container = artRef.current;
     let fullscreenRefocusTimeout = null;
 

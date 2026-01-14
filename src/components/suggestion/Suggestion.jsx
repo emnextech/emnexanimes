@@ -31,32 +31,26 @@ function Suggestion({ keyword, className }) {
 
   return (
     <div
-      className={`bg-[#2d2b44] ${className} flex ${
+      className={`bg-[#111111] border border-white/10 rounded-b-lg ${className} flex ${
         loading ? "justify-center py-7" : "justify-start"
       } ${!suggestion ? "p-3" : "justify-start"} items-center`}
-      style={{ boxShadow: "0 20px 20px rgba(0, 0, 0, .3)" }}
+      style={{ boxShadow: "0 20px 20px rgba(0, 0, 0, .5)" }}
     >
       {loading ? (
         <BouncingLoader />
       ) : error && !suggestion ? (
-        <div>Error loading suggestions</div>
+        <div className="text-gray-400">Error loading suggestions</div>
       ) : suggestion && hasFetched ? (
-        <div className="w-full flex flex-col pt-2 overflow-y-auto">
+        <div className="w-full flex flex-col pt-2 overflow-y-auto max-h-[400px]">
           {suggestion.map((item, index) => (
             <Link
               to={`/${item.id}`}
               key={index}
-              className="group py-2 flex items-start gap-x-3 hover:bg-[#3c3a5e] cursor-pointer px-[10px]"
-              style={{
-                borderBottom:
-                  index === suggestion.length - 1
-                    ? "none"
-                    : "1px dashed rgba(255, 255, 255, .075)",
-              }}
+              className="group py-2 flex items-start gap-x-3 hover:bg-[#1a1a1a] cursor-pointer px-[10px] border-b border-white/5 last:border-0 transition-colors"
             >
               <img
                 src={`${item.poster}`}
-                className="w-[50px] h-[75px] flex-shrink-0 object-cover"
+                className="w-[50px] h-[75px] flex-shrink-0 object-cover rounded"
                 alt=""
                 onError={(e) => {
                   e.target.src = "https://i.postimg.cc/HnHKvHpz/no-avatar.jpg";
@@ -64,26 +58,26 @@ function Suggestion({ keyword, className }) {
               />
               <div className="flex flex-col gap-y-[2px]">
                 {item?.title && (
-                  <h1 className="line-clamp-1 leading-5 font-bold text-[15px] group-hover:text-[#ffbade]">
+                  <h1 className="line-clamp-1 leading-5 font-bold text-[15px] text-white group-hover:text-[#39d353] transition-colors">
                     {item.title || "N/A"}
                   </h1>
                 )}
                 {item?.japanese_title && (
-                  <h1 className="line-clamp-1 leading-5 text-[13px] font-light text-[#aaaaaa]">
+                  <h1 className="line-clamp-1 leading-5 text-[13px] font-light text-gray-500">
                     {item.japanese_title || "N/A"}
                   </h1>
                 )}
                 {(item?.releaseDate || item?.showType || item?.duration) && (
                   <div className="flex gap-x-[5px] items-center w-full justify-start mt-[4px]">
-                    <p className="leading-5 text-[13px] font-light text-[#aaaaaa]">
+                    <p className="leading-5 text-[13px] font-light text-gray-500">
                       {item.releaseDate || "N/A"}
                     </p>
                     <span className="dot"></span>
-                    <p className="leading-5 text-[13px] font-medium group-hover:text-[#ffbade]">
+                    <p className="leading-5 text-[13px] font-medium text-gray-300 group-hover:text-[#39d353] transition-colors">
                       {item.showType || "N/A"}
                     </p>
                     <span className="dot"></span>
-                    <p className="leading-5 text-[13px] font-light text-[#aaaaaa]">
+                    <p className="leading-5 text-[13px] font-light text-gray-500">
                       {item.duration || "N/A"}
                     </p>
                   </div>
@@ -93,11 +87,11 @@ function Suggestion({ keyword, className }) {
           ))}
           {!loading && hasFetched && (
             <Link
-              className="w-full flex py-4 justify-center items-center bg-[#ffbade]"
+              className="w-full flex py-4 justify-center items-center bg-[#39d353] hover:bg-[#2fb344] transition-colors rounded-b-lg"
               to={`/search?keyword=${encodeURIComponent(keyword)}`}
             >
               <div className="flex w-fit items-center gap-x-2">
-                <p className="text-[17px] font-light text-black">
+                <p className="text-[17px] font-semibold text-black">
                   View all results
                 </p>
                 <FaChevronRight className="text-black text-[12px] font-black mt-[2px]" />
@@ -106,7 +100,7 @@ function Suggestion({ keyword, className }) {
           )}
         </div>
       ) : hasFetched ? (
-        <p className="text-[17px]">No results found!</p>
+        <p className="text-[17px] text-gray-400 p-4">No results found!</p>
       ) : null}
     </div>
   );

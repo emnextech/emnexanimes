@@ -1,0 +1,13 @@
+name = "anime-proxy-worker"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Add any environment variables here
+# ALLOWED_ORIGINS = "https://your-production-domain.com"
+
+# Uncomment if you want to use KV for caching
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "your-kv-namespace-id"

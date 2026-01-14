@@ -40,17 +40,17 @@ const ContinueWatching = () => {
     <div className="mt-6 max-[1200px]:px-6 max-md:px-0">
       <div className="flex items-center justify-between max-md:pl-4">
         <div className="flex items-center gap-x-2 justify-center">
-          <FaHistory className="text-[#ffbade]" />
-          <h1 className="text-[#ffbade] text-2xl font-bold max-[450px]:text-xl max-[450px]:mb-1 max-[350px]:text-lg">
+          <FaHistory className="text-[#39d353]" />
+          <h1 className="text-[#39d353] text-2xl font-bold max-[450px]:text-xl max-[450px]:mb-1 max-[350px]:text-lg">
             Continue Watching
           </h1>
         </div>
 
         <div className="flex gap-x-2 pr-2 max-[350px]:hidden">
-          <button className="btn-prev bg-gray-700 text-white p-3 rounded-full hover:bg-gray-500 transition max-[768px]:p-2">
+          <button className="btn-prev bg-[#1a1a1a] border border-white/10 text-white p-3 rounded-full hover:bg-[#222222] transition max-[768px]:p-2">
             <FaChevronLeft className="text-xs" />
           </button>
-          <button className="btn-next bg-gray-700 text-white p-3 rounded-full hover:bg-gray-500 transition max-[768px]:p-2">
+          <button className="btn-next bg-[#1a1a1a] border border-white/10 text-white p-3 rounded-full hover:bg-[#222222] transition max-[768px]:p-2">
             <FaChevronRight className="text-xs" />
           </button>
         </div>
@@ -90,7 +90,7 @@ const ContinueWatching = () => {
 
                 <Link
                   to={`/playing/${item?.id}?ep=${item.episodeId}`}
-                  className="inline-block bg-[#2a2c31] absolute left-0 top-0 w-full h-full group"
+                  className="inline-block bg-[#111111] absolute left-0 top-0 w-full h-full group"
                 >
                   <img
                     src={`https://wsrv.nl/?url=${item?.poster}`}

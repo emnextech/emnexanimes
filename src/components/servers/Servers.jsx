@@ -43,17 +43,17 @@ function Servers({
     localStorage.setItem("server_type", server.type);
   };
   return (
-    <div className="relative bg-[#11101A] p-4 w-full min-h-[100px] flex justify-center items-center max-[1200px]:bg-[#14151A]">
+    <div className="relative bg-[#0a0a0a] p-4 w-full min-h-[100px] flex justify-center items-center max-[1200px]:bg-[#111111]">
       {serverLoading ? (
         <div className="w-full h-full rounded-lg flex justify-center items-center max-[600px]:rounded-none">
           <BouncingLoader />
         </div>
       ) : servers ? (
-        <div className="w-full h-full rounded-lg grid grid-cols-[minmax(0,30%),minmax(0,70%)] overflow-hidden max-[800px]:grid-cols-[minmax(0,40%),minmax(0,60%)] max-[600px]:flex max-[600px]:flex-col max-[600px]:rounded-none">
-          <div className="h-full bg-[#ffbade] px-6 text-black flex flex-col justify-center items-center gap-y-2 max-[600px]:bg-transparent max-[600px]:h-1/2 max-[600px]:text-white max-[600px]:mb-4">
+        <div className="w-full h-full rounded-lg grid grid-cols-[minmax(0,30%),minmax(0,70%)] overflow-hidden max-[800px]:grid-cols-[minmax(0,40%),minmax(0,60%)] max-[600px]:flex max-[600px]:flex-col max-[600px]:rounded-none border border-white/10">
+          <div className="h-full bg-[#39d353] px-6 text-black flex flex-col justify-center items-center gap-y-2 max-[600px]:bg-transparent max-[600px]:h-1/2 max-[600px]:text-white max-[600px]:mb-4">
             <p className="text-center leading-5 font-medium text-[14px]">
               You are watching <br />
-              <span className="font-semibold max-[600px]:text-[#ffbade]">
+              <span className="font-semibold max-[600px]:text-[#39d353]">
                 Episode {activeEpisodeNum}
               </span>
             </p>
@@ -62,7 +62,7 @@ function Servers({
               beside.
             </p>
           </div>
-          <div className="bg-[#201F31] flex flex-col max-[600px]:h-full">
+          <div className="bg-[#111111] flex flex-col max-[600px]:h-full">
             {rawServers.length > 0 && (
               <div
                 className={`servers px-2 flex items-center flex-wrap ml-2 max-[600px]:py-2 ${
@@ -74,7 +74,7 @@ function Servers({
                 <div className="flex items-center gap-x-2">
                   <FontAwesomeIcon
                     icon={faFile}
-                    className="text-[#ffbade] text-[13px]"
+                    className="text-[#39d353] text-[13px]"
                   />
                   <p className="font-bold text-[14px]">RAW:</p>
                 </div>
@@ -82,10 +82,10 @@ function Servers({
                   {rawServers.map((item, index) => (
                     <div
                       key={index}
-                      className={`px-6 py-[5px] rounded-lg cursor-pointer ${
+                      className={`px-6 py-[5px] rounded-lg cursor-pointer transition-colors ${
                         activeServerId === item?.data_id
-                          ? "bg-[#ffbade] text-black"
-                          : "bg-[#373646] text-white"
+                          ? "bg-[#39d353] text-black"
+                          : "bg-[#1a1a1a] text-white hover:bg-[#222222]"
                       } max-[700px]:px-3`}
                       onClick={() => handleServerSelect(item)}
                     >
@@ -106,7 +106,7 @@ function Servers({
                 <div className="flex items-center gap-x-2">
                   <FontAwesomeIcon
                     icon={faClosedCaptioning}
-                    className="text-[#ffbade] text-[13px]"
+                    className="text-[#39d353] text-[13px]"
                   />
                   <p className="font-bold text-[14px]">SUB:</p>
                 </div>
@@ -114,10 +114,10 @@ function Servers({
                   {subServers.map((item, index) => (
                     <div
                       key={index}
-                      className={`px-6 py-[5px] rounded-lg cursor-pointer ${
+                      className={`px-6 py-[5px] rounded-lg cursor-pointer transition-colors ${
                         activeServerId === item?.data_id
-                          ? "bg-[#ffbade] text-black"
-                          : "bg-[#373646] text-white"
+                          ? "bg-[#39d353] text-black"
+                          : "bg-[#1a1a1a] text-white hover:bg-[#222222]"
                       } max-[700px]:px-3`}
                       onClick={() => handleServerSelect(item)}
                     >
@@ -138,7 +138,7 @@ function Servers({
                 <div className="flex items-center gap-x-3">
                   <FontAwesomeIcon
                     icon={faMicrophone}
-                    className="text-[#ffbade] text-[13px]"
+                    className="text-[#39d353] text-[13px]"
                   />
                   <p className="font-bold text-[14px]">DUB:</p>
                 </div>
@@ -146,10 +146,10 @@ function Servers({
                   {dubServers.map((item, index) => (
                     <div
                       key={index}
-                      className={`px-6 py-[5px] rounded-lg cursor-pointer ${
+                      className={`px-6 py-[5px] rounded-lg cursor-pointer transition-colors ${
                         activeServerId === item?.data_id
-                          ? "bg-[#ffbade] text-black"
-                          : "bg-[#373646] text-white"
+                          ? "bg-[#39d353] text-black"
+                          : "bg-[#1a1a1a] text-white hover:bg-[#222222]"
                       } max-[700px]:px-3`}
                       onClick={() => handleServerSelect(item)}
                     >
@@ -164,7 +164,7 @@ function Servers({
           </div>
         </div>
       ) : (
-        <p className="text-center font-medium text-[15px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
+        <p className="text-center font-medium text-[15px] text-gray-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
           Could not load servers <br />
           Either reload or try again after sometime
         </p>

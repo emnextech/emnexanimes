@@ -58,7 +58,7 @@ function SplashScreen() {
         <nav className="relative w-full">
           <div className="w-fit flex gap-x-12 mx-auto font-semibold max-[780px]:hidden">
             {NAV_LINKS.map((link) => (
-              <Link key={link.to} to={link.to} className="hover:text-[#ffbade]">
+              <Link key={link.to} to={link.to} className="hover:text-[#39d353] transition-colors">
                 {link.label}
               </Link>
             ))}
@@ -70,7 +70,7 @@ function SplashScreen() {
               className="p-2 focus:outline-none flex items-center gap-x-2 transition-colors duration-200 group"
             >
               <svg
-                className="w-6 h-6 text-white transition-colors duration-200 max-[520px]:w-5 max-[520px]:h-5 group-hover:text-[#ffbade] group-focus:text-[#ffbade] group-active:text-[#ffbade]"
+                className="w-6 h-6 text-white transition-colors duration-200 max-[520px]:w-5 max-[520px]:h-5 group-hover:text-[#39d353] group-focus:text-[#39d353] group-active:text-[#39d353]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -83,7 +83,7 @@ function SplashScreen() {
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
-              <span className="text-white font-semibold transition-colors duration-200 group-hover:text-[#ffbade] group-focus:text-[#ffbade] group-active:text-[#ffbade]">
+              <span className="text-white font-semibold transition-colors duration-200 group-hover:text-[#39d353] group-focus:text-[#39d353] group-active:text-[#39d353]">
                 Menu
               </span>
             </button>
@@ -91,7 +91,7 @@ function SplashScreen() {
 
           {isModalOpen && (
             <div className="max-[780px]:block w-full hidden absolute z-50 top-10">
-              <div className="bg-[#101010fa] w-full p-6 rounded-2xl flex flex-col gap-y-6 items-center">
+              <div className="bg-[#111111] border border-white/10 w-full p-6 rounded-2xl flex flex-col gap-y-6 items-center">
                 <button
                   onClick={() => setIsModalOpen(false)}
                   className="self-end text-black text-xl absolute top-0 right-0 bg-white px-3 py-1 rounded-tr-xl rounded-bl-xl font-bold"
@@ -103,7 +103,7 @@ function SplashScreen() {
                     key={link.to}
                     to={link.to}
                     onClick={() => setIsModalOpen(false)}
-                    className="hover:text-[#ffbade] text-white text-lg"
+                    className="hover:text-[#39d353] text-white text-lg transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -113,39 +113,38 @@ function SplashScreen() {
           )}
         </nav>
 
-        <div className="splashscreen min-h-[480px] min-[1200px]:min-h-[520px] bg-[#2B2A3C] rounded-[40px] flex relative mt-7 max-[780px]:w-full items-stretch max-[780px]:rounded-[30px] max-[520px]:rounded-none max-[520px]:min-h-fit max-[520px]:pb-4 max-[520px]:mt-4">
+        <div className="splashscreen min-h-[480px] min-[1200px]:min-h-[520px] bg-[#111111] border border-white/10 rounded-[40px] flex relative mt-7 max-[780px]:w-full items-stretch max-[780px]:rounded-[30px] max-[520px]:rounded-none max-[520px]:min-h-fit max-[520px]:pb-4 max-[520px]:mt-4 max-[520px]:border-0">
           <div className="h-auto flex flex-col w-[700px] relative z-40 px-20 py-20 left-0 max-[1200px]:py-12 max-[780px]:px-12 max-[520px]:py-4 max-[520px]:px-8">
             <Link
               to="/home"
               className="text-[45px] font-extrabold tracking-wide max-[520px]:text-[38px] max-[520px]:text-center"
             >
-              {logoTitle.slice(0, 3)}
-              <span className="text-[#FFBADE]">{logoTitle.slice(3, 4)}</span>
-              {logoTitle.slice(4)}
+              {logoTitle.slice(0, 5)}
+              <span className="text-[#39d353]">{logoTitle.slice(5)}</span>
             </Link>
             <div className="w-full flex gap-x-3 mt-6">
               <input
                 type="text"
                 placeholder="Search anime..."
-                className="w-full py-3 px-6 rounded-xl bg-white text-[18px] text-black"
+                className="w-full py-3 px-6 rounded-xl bg-[#1a1a1a] border border-white/10 text-[18px] text-white placeholder:text-gray-500 focus:border-[#39d353]/50 focus:outline-none transition-colors"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 onKeyDown={handleKeyDown}
               />
               <button
-                className="bg-[#FFBADE] text-white py-3 px-4 rounded-xl font-extrabold"
+                className="bg-[#39d353] text-black py-3 px-4 rounded-xl font-extrabold hover:bg-[#2fb344] transition-colors"
                 onClick={handleSearchSubmit}
               >
                 <FontAwesomeIcon
                   icon={faMagnifyingGlass}
-                  className="text-lg text-black hover:text-white max-[600px]:mt-[7px]"
+                  className="text-lg text-black max-[600px]:mt-[7px]"
                 />
               </button>
             </div>
             <div className="mt-8 text-[15px] leading-[1.6] max-[520px]:text-[13px] max-[520px]:leading-[1.4]">
-              <span className="splashitem font-[600]">Top search: </span>
+              <span className="splashitem font-[600] text-[#39d353]">Top search: </span>
               {topSearch.map((item, index) => (
-                <span key={index} className="splashitem font-[400]">
+                <span key={index} className="splashitem font-[400] text-gray-400 hover:text-white transition-colors">
                   <Link to={item.link}>{item.title}</Link>
                   {index < topSearch.length - 1 && <span>, </span>}
                 </span>
@@ -153,7 +152,7 @@ function SplashScreen() {
             </div>
             <div className="mt-8 flex max-[780px]:left-10">
               <Link to="/home" className="max-[520px]:w-full">
-                <div className="bg-[#FFBADE] text-black py-4 px-10 rounded-xl font-bold text-[20px] max-[520px]:text-center max-[520px]:font-medium max-[520px]:text-[17px]">
+                <div className="bg-[#39d353] text-black py-4 px-10 rounded-xl font-bold text-[20px] hover:bg-[#2fb344] transition-colors max-[520px]:text-center max-[520px]:font-medium max-[520px]:text-[17px]">
                   Watch anime
                   <FontAwesomeIcon
                     icon={faCircleArrowRight}

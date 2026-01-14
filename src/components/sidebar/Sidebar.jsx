@@ -32,7 +32,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             isOpen ? "backdrop-blur-lg" : "backdrop-blur-none"
           }`}
           onClick={onClose}
-          style={{ zIndex: 1000000, background: "rgba(32, 31, 49, .8)" }}
+          style={{ zIndex: 1000000, background: "rgba(0, 0, 0, .85)" }}
         />
       )}
 
@@ -43,22 +43,21 @@ const Sidebar = ({ isOpen, onClose }) => {
         style={{ zIndex: 1000200 }}
       >
         <div
-          className="bg-white/10 w-[260px] py-8 h-full flex flex-col items-start max-[575px]:w-56 overflow-y-auto sidebar"
+          className="bg-[#111111] w-[260px] py-8 h-full flex flex-col items-start max-[575px]:w-56 overflow-y-auto sidebar border-r border-white/5"
           style={{
             zIndex: 300,
-            borderRight: "1px solid rgba(0, 0, 0, .1)",
           }}
         >
           <div className="px-4 w-full">
             <button
               onClick={onClose}
-              className="w-full text-white flex items-baseline h-fit gap-x-1 z-[100] px-3 py-2 bg-[#4f4d6e] rounded-3xl"
+              className="w-full text-white flex items-baseline h-fit gap-x-1 z-[100] px-3 py-2 bg-[#1a1a1a] border border-white/10 rounded-lg hover:bg-[#39d353] hover:text-black hover:border-[#39d353] transition-all"
             >
               <FaChevronLeft className="text-sm font-bold" />
               <p>Close menu</p>
             </button>
           </div>
-          <div className="flex gap-x-7 w-full py-3 justify-center px-auto mt-8 bg-black/10 max-[575px]:gap-x-4 lg:hidden">
+          <div className="flex gap-x-7 w-full py-3 justify-center px-auto mt-8 bg-black/20 max-[575px]:gap-x-4 lg:hidden">
             {[
               { icon: faRandom, label: "Random" },
               { icon: faFilm, label: "Movie" },
@@ -66,13 +65,13 @@ const Sidebar = ({ isOpen, onClose }) => {
               <Link
                 to={`/${item.label}`}
                 key={index}
-                className="flex flex-col gap-y-1 items-center"
+                className="flex flex-col gap-y-1 items-center group"
               >
                 <FontAwesomeIcon
                   icon={item.icon}
-                  className="text-[#ffbade] text-xl font-bold max-[575px]:text-[15px]"
+                  className="text-[#39d353] text-xl font-bold max-[575px]:text-[15px] group-hover:scale-110 transition-transform"
                 />
-                <p className="text-[15px] max-[575px]:text-[13px]">
+                <p className="text-[15px] max-[575px]:text-[13px] text-gray-300 group-hover:text-white transition-colors">
                   {item.label}
                 </p>
               </Link>
@@ -83,12 +82,12 @@ const Sidebar = ({ isOpen, onClose }) => {
                   <button
                     key={lang}
                     onClick={() => toggleLanguage(lang)}
-                    className={`px-1 py-[1px] text-xs font-bold ${
+                    className={`px-1 py-[1px] text-xs font-bold transition-colors ${
                       index === 0 ? "rounded-l-[3px]" : "rounded-r-[3px]"
                     } ${
                       language === lang
-                        ? "bg-[#ffbade] text-black"
-                        : "bg-gray-600 text-white"
+                        ? "bg-[#39d353] text-black"
+                        : "bg-[#1a1a1a] text-white"
                     } max-[575px]:text-[9px] max-[575px]:py-0`}
                   >
                     {lang}
@@ -96,7 +95,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 ))}
               </div>
               <div className="w-full">
-                <p className="whitespace-nowrap text-[15px] max-[575px]:text-[13px]">
+                <p className="whitespace-nowrap text-[15px] max-[575px]:text-[13px] text-gray-400">
                   Anime name
                 </p>
               </div>
@@ -120,12 +119,11 @@ const Sidebar = ({ isOpen, onClose }) => {
             ].map((item, index) => (
               <li
                 key={index}
-                className="py-4 w-full font-semibold"
-                style={{ borderBottom: "1px solid rgba(255, 255, 255, .08)" }}
+                className="py-4 w-full font-medium border-b border-white/5"
               >
                 <Link
                   to={item.path}
-                  className="px-4 hover:text-[#ffbade] hover:cursor-pointer w-fit line-clamp-1"
+                  className="px-4 hover:text-[#39d353] hover:cursor-pointer w-fit line-clamp-1 transition-colors"
                 >
                   {item.name}
                 </Link>

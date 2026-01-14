@@ -16,7 +16,8 @@
   width: 40px;
   height: 40px;
   color: white;
-  background-color: #383747;
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 7px;
   display: flex;
   justify-content: center;
@@ -26,8 +27,9 @@
 }
 .button-prev:hover,
 .button-next:hover {
-  background-color: #ffbade;
-  color: #383747;
+  background-color: #39d353;
+  border-color: #39d353;
+  color: #0a0a0a;
 }
 
 .button-prev::after {
@@ -48,7 +50,7 @@
   display: none;
 }
 .swiper-pagination-bullet-active {
-  background-color: rgb(239, 213, 22) !important;
+  background-color: #39d353 !important;
 }
 @media only screen and (max-width: 575px) {
   .swiper-horizontal > .swiper-pagination-bullets {

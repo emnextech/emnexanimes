@@ -38,8 +38,8 @@ function Sidecard({ data, label, className, limit }) {
     useToolTipPosition(hoveredItem, data);
   return (
     <div className={`flex flex-col space-y-6 ${className}`}>
-      <h1 className="font-bold text-2xl text-[#ffbade]">{label}</h1>
-      <div className="flex flex-col space-y-4 bg-[#2B2A3C] p-4 pt-8">
+      <h1 className="font-bold text-2xl text-[#39d353]">{label}</h1>
+      <div className="flex flex-col space-y-4 bg-[#111111] border border-white/10 rounded-lg p-4 pt-8">
         {data &&
           displayedData.map((item, index) => (
             <div
@@ -48,13 +48,9 @@ function Sidecard({ data, label, className, limit }) {
               ref={(el) => (cardRefs.current[index] = el)}
             >
               <div
-                style={{
-                  borderBottom:
-                    index + 1 < displayedData.length
-                      ? "1px solid rgba(255, 255, 255, .075)"
-                      : "none",
-                }}
-                className="flex pb-4 relative container items-center"
+                className={`flex pb-4 relative container items-center ${
+                  index + 1 < displayedData.length ? "border-b border-white/5" : ""
+                }`}
               >
                 {hoveredItem === item.id + index &&
                   window.innerWidth > 1024 && (
@@ -83,7 +79,7 @@ function Sidecard({ data, label, className, limit }) {
                 <div className="flex flex-col ml-4 space-y-2">
                   <Link
                     to={`/${item.id}`}
-                    className="text-[1em] font-[500] hover:cursor-pointer hover:text-[#ffbade] transform transition-all ease-out line-clamp-1 max-[478px]:line-clamp-2 max-[478px]:text-[14px]"
+                    className="text-[1em] font-[500] text-white hover:cursor-pointer hover:text-[#39d353] transform transition-all ease-out line-clamp-1 max-[478px]:line-clamp-2 max-[478px]:text-[14px]"
                     onClick={() =>
                       window.scrollTo({ top: 0, behavior: "smooth" })
                     }
@@ -116,7 +112,7 @@ function Sidecard({ data, label, className, limit }) {
                     {item.tvInfo?.showType && (
                       <div className="flex items-center gap-x-2">
                         <div className="dot ml-[4px]"></div>
-                        <p className="text-[15px] font-light">
+                        <p className="text-[15px] font-light text-gray-400">
                           {item.tvInfo.showType}
                         </p>
                       </div>
@@ -128,7 +124,7 @@ function Sidecard({ data, label, className, limit }) {
           ))}
         {!limit && data.length > 6 && (
           <button
-            className="w-full bg-[#555462d3] py-3 mt-4 hover:bg-[#555462] rounded-md font-bold transform transition-all ease-out"
+            className="w-full bg-[#1a1a1a] py-3 mt-4 hover:bg-[#222222] border border-white/10 rounded-md font-bold transform transition-all ease-out"
             onClick={toggleShowAll}
           >
             {showAll ? "Show less" : "Show more"}

@@ -7,7 +7,7 @@ function Voiceactor({ animeInfo, className }) {
   return (
     <div className={`w-full mt-8 flex flex-col gap-y-4 ${className}`}>
       <div className="flex justify-between items-center">
-        <h1 className="font-bold text-2xl text-[#ffbade] max-[478px]:text-[18px] capitalize">
+        <h1 className="font-bold text-2xl text-[#39d353] max-[478px]:text-[18px] capitalize">
           Characters & Voice Actors
         </h1>
         <button className="flex w-fit items-baseline h-fit rounded-3xl gap-x-1 group">
@@ -26,7 +26,7 @@ function Voiceactor({ animeInfo, className }) {
         {animeInfo.charactersVoiceActors.slice(0, 6).map((character, index) => (
           <div
             key={index}
-            className="flex justify-between items-center px-3 py-4 rounded-md bg-[#373646]"
+            className="flex justify-between items-center px-3 py-4 rounded-md bg-[#111111] border border-white/10"
           >
             {character.character && (
               <div className="w-[50%] float-left overflow-hidden max-[350px]:w-[45%]">

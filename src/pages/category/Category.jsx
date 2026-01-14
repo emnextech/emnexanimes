@@ -53,14 +53,14 @@ function Category({ path, label }) {
 
   return (
     <div className="w-full flex flex-col gap-y-4 mt-[64px] max-md:mt-[50px]">
-      <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
+      <div className="w-full flex gap-x-4 items-center bg-[#0a0a0a] p-5 max-[575px]:px-3 max-[320px]:hidden">
         <img
           src="https://i.postimg.cc/d34WWyNQ/share-icon.gif"
           alt="Share Anime"
           className="w-[60px] h-auto rounded-full max-[1024px]:w-[40px] max-[575px]:hidden"
         />
         <div className="flex flex-col w-fit">
-          <p className="text-[15px] font-bold text-[#FFBADE]">Share Anime</p>
+          <p className="text-[15px] font-bold text-[#39d353]">Share Anime</p>
           <p className="text-[16px] text-white">to your friends</p>
         </div>
       </div>
@@ -70,7 +70,7 @@ function Category({ path, label }) {
           {loading ? (
             <CategoryCardLoader className="mt-5" />
           ) : page > totalPages ? (
-            <p className="font-bold text-2xl text-[#ffbade] max-[478px]:text-[18px] max-[300px]:leading-6">
+            <p className="font-bold text-2xl text-[#39d353] max-[478px]:text-[18px] max-[300px]:leading-6">
               You came a long way, go back <br className="max-[300px]:hidden" />
               nothing is here
             </p>

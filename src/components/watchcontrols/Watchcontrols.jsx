@@ -7,7 +7,7 @@ const ToggleButton = ({ label, isActive, onClick }) => (
     <h1 className="capitalize text-[13px]">{label}</h1>
     <span
       className={`capitalize text-[13px] ${
-        isActive ? "text-[#ffbade]" : "text-red-500"
+        isActive ? "text-[#39d353]" : "text-red-500"
       }`}
     >
       {isActive ? "on" : "off"}
@@ -42,7 +42,7 @@ export default function WatchControls({
   }, [episodeId, episodes]);
 
   return (
-    <div className="bg-[#11101A] w-full flex justify-between flex-wrap px-4 pt-4 max-[1200px]:bg-[#14151A] max-[375px]:flex-col max-[375px]:gap-y-2">
+    <div className="bg-[#0a0a0a] w-full flex justify-between flex-wrap px-4 pt-4 max-[1200px]:bg-[#111111] max-[375px]:flex-col max-[375px]:gap-y-2">
       <div className="flex gap-x-4 flex-wrap">
         <ToggleButton
           label="auto play"

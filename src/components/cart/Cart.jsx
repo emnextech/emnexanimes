@@ -34,7 +34,7 @@ function Cart({ label, data, path }) {
 
   return (
     <div className="flex flex-col w-1/4 space-y-7 max-[1200px]:w-full">
-      <h1 className="font-bold text-2xl text-[#ffbade] max-md:text-xl">
+      <h1 className="font-bold text-2xl text-[#39d353] max-md:text-xl">
         {label}
       </h1>
       <div className="w-full space-y-4 flex flex-col">
@@ -42,14 +42,13 @@ function Cart({ label, data, path }) {
           data.slice(0, 5).map((item, index) => (
             <div
               key={index}
-              style={{ borderBottom: "1px solid rgba(255, 255, 255, .075)" }}
-              className="flex pb-4 items-center relative"
+              className="flex pb-4 items-center relative border-b border-white/5"
               ref={(el) => (cardRefs.current[index] = el)}
             >
               <img
                 src={`${item.poster}`}
                 alt={item.title}
-                className="flex-shrink-0 w-[60px] h-[75px] rounded-md object-cover cursor-pointer"
+                className="flex-shrink-0 w-[60px] h-[75px] rounded-md object-cover cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => navigate(`/watch/${item.id}`)}
                 onMouseEnter={() => handleImageEnter(item, index)}
                 onMouseLeave={handleImageLeave}
@@ -81,13 +80,13 @@ function Cart({ label, data, path }) {
               <div className="flex flex-col ml-4 space-y-2 w-full">
                 <Link
                   to={`/${item.id}`}
-                  className="w-full line-clamp-2 text-[1em] font-[500] hover:cursor-pointer hover:text-[#ffbade] transform transition-all ease-out max-[1200px]:text-[14px]"
+                  className="w-full line-clamp-2 text-[1em] font-[500] text-white hover:cursor-pointer hover:text-[#39d353] transform transition-all ease-out max-[1200px]:text-[14px]"
                 >
                   {language === "EN" ? item.title : item.japanese_title}
                 </Link>
                 <div className="flex items-center flex-wrap w-fit space-x-1">
                   {item.tvInfo?.sub && (
-                    <div className="flex space-x-1 justify-center items-center bg-[#B0E3AF] rounded-[4px] px-[4px] text-black py-[2px]">
+                    <div className="flex space-x-1 justify-center items-center bg-[#39d353]/20 border border-[#39d353]/30 rounded-[4px] px-[4px] text-[#39d353] py-[2px]">
                       <FontAwesomeIcon
                         icon={faClosedCaptioning}
                         className="text-[12px]"
@@ -97,7 +96,7 @@ function Cart({ label, data, path }) {
                   )}
 
                   {item.tvInfo?.dub && (
-                    <div className="flex space-x-1 justify-center items-center bg-[#B9E7FF] rounded-[4px] px-[8px] text-black py-[2px]">
+                    <div className="flex space-x-1 justify-center items-center bg-blue-500/20 border border-blue-500/30 rounded-[4px] px-[8px] text-blue-400 py-[2px]">
                       <FontAwesomeIcon
                         icon={faMicrophone}
                         className="text-[12px]"
@@ -107,7 +106,7 @@ function Cart({ label, data, path }) {
                   )}
                   <div className="flex items-center w-fit pl-1 gap-x-1">
                     <div className="dot"></div>
-                    <p className="text-[14px] text-[#D2D2D3]">
+                    <p className="text-[14px] text-gray-400">
                       {item.tvInfo.showType}
                     </p>
                   </div>
@@ -117,12 +116,12 @@ function Cart({ label, data, path }) {
           ))}
         <Link
           to={`/${path}`}
-          className="flex w-fit items-baseline rounded-3xl gap-x-2 group"
+          className="flex w-fit items-baseline rounded-lg gap-x-2 group"
         >
-          <p className="text-white text-[17px] h-fit leading-4 group-hover:text-[#ffbade] transform transition-all ease-out">
+          <p className="text-gray-400 text-[17px] h-fit leading-4 group-hover:text-[#39d353] transform transition-all ease-out">
             View more
           </p>
-          <FaChevronRight className="text-white text-[10px] group-hover:text-[#ffbade] transform transition-all ease-out" />
+          <FaChevronRight className="text-gray-400 text-[10px] group-hover:text-[#39d353] transform transition-all ease-out" />
         </Link>
       </div>
     </div>
