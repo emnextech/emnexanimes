@@ -1,16 +1,14 @@
 import axios from "axios";
 
 const getQtip = async (id) => {
+  const api_url = import.meta.env.VITE_API_URL;
   try {
-    let workerUrls = import.meta.env.VITE_WORKER_URL?.split(",");
-    let baseUrl = workerUrls?.length
-      ? workerUrls[Math.floor(Math.random() * workerUrls.length)]
-      : import.meta.env.VITE_API_URL;
-    if (!baseUrl) throw new Error("No API endpoint defined.");
-    const response = await axios.get(`${baseUrl}/qtip/${id.split("-").pop()}`);
+    // Extract the numeric ID from the full anime ID (e.g., "one-piece-100" -> "100")
+    const numericId = id.split("-").pop();
+    const response = await axios.get(`${api_url}/qtip/${numericId}`);
     return response.data.results;
   } catch (err) {
-    console.error("Error fetching genre info:", err);
+    console.error("Error fetching qtip info:", err);
     return null; 
   }
 };
